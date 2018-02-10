@@ -9,7 +9,7 @@ class Authenticator
         user_info_resp = fetch_github_user_info(access_token)
 
         {
-        issuer: 'localhost:3000',
+        issuer: ENV['CLIENT_URL'],
         login: user_info_resp['login'],
         name: user_info_resp['name'],
         avatar_url: user_info_resp['avatar_url']
