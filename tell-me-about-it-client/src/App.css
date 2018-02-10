@@ -1,5 +1,10 @@
 .App {
+  height: 100%;
+  width: 100%;
   text-align: center;
+  background-image: url("https://images.unsplash.com/5/unsplash-kitsune-4.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .App-logo {
