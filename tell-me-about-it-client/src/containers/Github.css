@@ -1,11 +1,15 @@
 .Github-container {
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
     width: 40em;
     background: #fff;
+    box-shadow: 1px 1px 5px #888;
+    align-self: start;
 }
 
 .Github-nav {
+    margin: 0;
+    padding: 0; 
     list-style: none;
     border-bottom: 1px solid rgb(218, 216, 216);
     display: grid;
@@ -17,5 +21,5 @@
 }
 
 .Github-nav li:hover {
-    background-color: aliceblue;
+    background-color: rgb(247, 247, 247);
 }
