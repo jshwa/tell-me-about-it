@@ -4,6 +4,7 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :login
       t.string :name
       t.string :avatar_url
+      t.integer :github_id
 
       t.timestamps
     end

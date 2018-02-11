@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20180210214902) do
     t.string "login"
     t.string "name"
     t.string "avatar_url"
+    t.integer "github_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
