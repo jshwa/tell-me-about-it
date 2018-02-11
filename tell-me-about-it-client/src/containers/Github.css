@@ -1,0 +1,21 @@
+.Github-container {
+    margin: 0;
+    padding: 0;
+    width: 40em;
+    background: #fff;
+}
+
+.Github-nav {
+    list-style: none;
+    border-bottom: 1px solid rgb(218, 216, 216);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.Github-nav li {
+    padding: 1em;
+}
+
+.Github-nav li:hover {
+    background-color: aliceblue;
+}
