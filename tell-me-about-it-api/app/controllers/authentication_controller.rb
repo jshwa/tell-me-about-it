@@ -8,13 +8,14 @@ class AuthenticationController < ApplicationController
       github_id = user_info[:github_id]
       avatar_url = user_info[:avatar_url]
       
-      token = TokenHandler.encode(login)
+      token = TokenHandler.encode(github_id)
       User.where(github_id: github_id).first_or_create!(
         name: name,
         login:login,
         avatar_url: avatar_url
       )
-      redirect_to "#{issuer}?token=#{token}"
+      
+      redirect_to "#{issuer}?token=#{token}&login=#{login}"
     rescue StandardError => error
       redirect_to "#{issuer}?error=#{error.message}"
     end
