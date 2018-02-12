@@ -4,11 +4,16 @@ import './App.css';
 import Clock from './components/Clock';
 import Github from './containers/Github';
 import { loginUser } from './actions/Users';
+import { getPublishedPosts } from './actions/Github';
 
 class App extends Component {
+
 	componentDidMount() {
-		const params = this.getQueryParams();
-		this.props.loginUser(params);
+      if (window.location.search !== "") {
+         const params = this.getQueryParams();
+         this.props.loginUser(params);
+         this.props.getPublishedPosts(params.login);
+      }
 	}
 
 	getQueryParams() {
@@ -30,11 +35,4 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => {
-	return ({
-		token: state.token,
-		login: state.login
-	})
-}
-
-export default connect(mapStateToProps, {loginUser})(App);
+export default connect(null, { loginUser, getPublishedPosts })(App);
