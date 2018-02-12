@@ -6,12 +6,6 @@ import DraftPosts from '../components/DraftPosts';
 import { setTab, getPublishedPosts } from '../actions/Github';
 import './Github.css';
 
-let drafts = [
-    {title: "My Final Project"},
-    {title: "What's next"},
-    {title: "How I became President"}
-]
-
 class Github extends Component {
 
    componentWillMount(){
@@ -33,7 +27,7 @@ class Github extends Component {
                tab = <PublishedPosts posts={this.props.github.posts} />
                break;
             case "Drafts":
-                tab = <DraftPosts posts={drafts} /> 
+                tab = <DraftPosts posts={this.props.github.drafts} /> 
                 break;
             case "Sign In":
                 tab = <GithubLogin />
