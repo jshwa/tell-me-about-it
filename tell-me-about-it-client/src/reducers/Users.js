@@ -1,10 +1,7 @@
-const userReducer = (state = [
-   { login: null,
-     token: null }
-], action) => {
+const userReducer = (state = {token: null, login: null}, action) => {
    switch(action.type) {
       case "LOGIN_USER":
-         return Object.assign({}, state, action.userData)
+         return action.userData
       default:
          return state;
     }
