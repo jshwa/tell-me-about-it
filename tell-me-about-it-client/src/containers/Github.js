@@ -14,6 +14,12 @@ let drafts = [
 
 class Github extends Component {
 
+   componentWillMount(){
+      if (this.props.userData) {
+         this.props.setTab("Drafts")
+      }
+   }
+
    handleOnClick = (event) => {
       this.props.setTab(event.target.innerHTML)
    }
@@ -24,8 +30,8 @@ class Github extends Component {
         let tab = null;
         switch (active) {
             case "Posts":
-                tab = <PublishedPosts posts={this.props.github.posts} />
-                break;
+               tab = <PublishedPosts posts={this.props.github.posts} />
+               break;
             case "Drafts":
                 tab = <DraftPosts posts={drafts} /> 
                 break;
