@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-import GithubLogin from '../components/GithubLogin'
-import PublishedPosts from '../components/PublishedPosts'
-import DraftPosts from '../components/DraftPosts'
-import './Github.css'
-
-let posts = [
-    {title: "Oh My Json"},
-    {title: "Enlightenment is the Worst"},
-    {title: "Shipping Tracker: My Sinatra Project"}
-]
+import { connect } from 'react-redux';
+import GithubLogin from '../components/GithubLogin';
+import PublishedPosts from '../components/PublishedPosts';
+import DraftPosts from '../components/DraftPosts';
+import { setTab, getPublishedPosts } from '../actions/Github';
+import './Github.css';
 
 let drafts = [
     {title: "My Final Project"},
@@ -16,32 +12,28 @@ let drafts = [
     {title: "How I became President"}
 ]
 
-export default class Github extends Component {
-    constructor(){
-        super();
-        this.state = {
-            active: 'Sign In'
-        }
-    }
+class Github extends Component {
 
-    handleOnClick = (event) => {
-        this.setState({active: event.target.innerHTML})
-    }
+   handleOnClick = (event) => {
+      this.props.setTab(event.target.innerHTML)
+   }
 
-    render() {
-        const active = this.state.active;
+   render() {
+        const active = this.props.github.tab;
 
         let tab = null;
         switch (active) {
             case "Posts":
-                tab = <PublishedPosts posts={posts} />
+                tab = <PublishedPosts posts={this.props.github.posts} />
                 break;
             case "Drafts":
                 tab = <DraftPosts posts={drafts} /> 
                 break;
             case "Sign In":
                 tab = <GithubLogin />
-                break;
+                break; 
+            default :
+               tab = <GithubLogin />
         }
         return (
             <div className="Github-container">
@@ -55,3 +47,12 @@ export default class Github extends Component {
         )
     }
 }
+
+const mapStateToProps = state => {
+	return {
+      userData: state.userData,
+      github: state.github
+	}
+}
+
+export default connect(mapStateToProps, { setTab, getPublishedPosts })(Github)
