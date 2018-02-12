@@ -14,3 +14,10 @@ export const getDraftPosts = token => {
       .then(drafts => dispatch(addDraftPosts(drafts)))
    }
 }
+
+export const saveEditorState = editorState => {
+   return {
+      type: "UPDATE_EDITOR_STATE",
+      editorState: editorState
+   }
+}
