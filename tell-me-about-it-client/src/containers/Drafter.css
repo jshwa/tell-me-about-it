@@ -1,0 +1,11 @@
+.Drafter-container {
+   margin: 0 auto;
+   width: 50em;
+   background-color: white;
+}
+
+.Editor {
+   height: 40em;
+   width: 65em;
+   margin: 1em;
+}
