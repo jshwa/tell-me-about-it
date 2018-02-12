@@ -1,0 +1,35 @@
+export const setTab = tab => {
+   return {
+      type: 'CURRENT_TAB',
+      tab: tab
+   }
+}
+
+export const addPublishedPost = post => {
+   return {
+      type: 'ADD_PUBLISHED_POST',
+      post: post
+   }
+}
+
+export const getPublishedPosts = login => {
+   const githubURL = `http://api.github.com/repos/${login}/${login}.github.io/`
+   
+   return dispatch => {
+      return fetch(`${githubURL}contents/_posts`, {
+         headers: {
+            "Accept": "application/vnd.github.v3+json"
+         }
+      })
+      .then(response => response.json())
+      .then(postData => Promise.all(postData.map(
+         post => fetch(`https://raw.githubusercontent.com/${login}/${login}.github.io/master/${post.path}`, {
+            method: 'get', 
+            mode: "cors", 
+            headers: { "accept": "application/vnd.github.VERSION.raw" }
+         })
+         .then(resp => resp.text())
+         .then(post => dispatch(addPublishedPost(post)))
+      )))
+   }
+}
