@@ -5,6 +5,7 @@ import Clock from './components/Clock';
 import Github from './containers/Github';
 import { loginUser } from './actions/Users';
 import { getPublishedPosts } from './actions/Github';
+import { getDraftPosts } from './actions/Drafts';
 
 class App extends Component {
 
@@ -13,6 +14,7 @@ class App extends Component {
          const params = this.getQueryParams();
          this.props.loginUser(params);
          this.props.getPublishedPosts(params.login);
+         this.props.getDraftPosts(params.token);
       }
 	}
 
@@ -35,4 +37,4 @@ class App extends Component {
   }
 }
 
-export default connect(null, { loginUser, getPublishedPosts })(App);
+export default connect(null, { loginUser, getPublishedPosts, getDraftPosts })(App);
