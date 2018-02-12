@@ -2,7 +2,11 @@ class Api::PostsController < ApplicationController
     before_action :set_post, only: [:show, :new, :edit, :destroy]
 
     def index
-        render json: Post.all
+      if logged_in?
+        render json: current_user.posts
+      else
+         render json: {status: "error", message: "User not logged in"}
+      end
     end
 
     def show
