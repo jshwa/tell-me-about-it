@@ -6,6 +6,7 @@ import Github from './containers/Github';
 import { loginUser } from './actions/Users';
 import { getPublishedPosts } from './actions/Github';
 import { getDraftPosts } from './actions/Drafts';
+import Drafter from './containers/Drafter'
 
 class App extends Component {
 
@@ -31,6 +32,7 @@ class App extends Component {
       return (
       <div className="App">
         <Clock />
+        <Drafter />
         <Github /> 
       </div>
     );
