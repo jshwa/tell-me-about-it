@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import { convertToRaw } from 'draft-js';
 import { connect } from 'react-redux';
-import { setCurrentDraft } from '../actions/Drafts'
+import { setCurrentDraft } from '../actions/Drafts';
+import { draftToMarkdown } from 'markdown-draft-js';
+
 
 class PostActions extends Component {
    saveOrUpdateDraft = () => {
@@ -37,7 +40,19 @@ class PostActions extends Component {
    }
 
    postToGithub = () => {
-
+      const rawDraft = convertToRaw(this.props.editorState.getCurrentContent());
+      const encodedMarkdown = btoa(draftToMarkdown(rawDraft));
+      const login = this.props.userData.login;
+      const title = rawDraft.blocks[0].text.toLowerCase().replace(/\s/g, "_");
+      const date = moment().format("YYYY-MM-DD");
+      fetch(`https://api.github.com/repos/${login}/${login}.github.io/contents/_posts/${date}-${title}.markdown`, {
+         method: 'PUT',
+         headers: {"Authorization": `Bearer ${this.props.userData.oauth}`},
+         body: JSON.stringify({"message": `Publishing Post - ${rawDraft.blocks[0].text}`, "content": `${encodedMarkdown}`})
+      })
+      .then(resp => resp.json())
+      .catch(error => console.error('Error:', error))
+      .then(response => console.log(response))
    }
 
    render(){
