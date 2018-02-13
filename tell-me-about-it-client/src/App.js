@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
 import Clock from './components/Clock';
-import Github from './containers/Github';
+import Hub from './containers/Hub';
 import { loginUser } from './actions/Users';
 import { getPublishedPosts } from './actions/Posts';
 import { getDraftPosts } from './actions/Drafts';
@@ -33,7 +33,7 @@ class App extends Component {
       <div className="App">
         <Clock />
         <Drafter />
-        <Github /> 
+        <Hub /> 
       </div>
     );
   }
