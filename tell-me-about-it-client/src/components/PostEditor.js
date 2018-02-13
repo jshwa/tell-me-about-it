@@ -115,6 +115,7 @@ class PostEditor extends Component {
            padding: 2,
          },
         };
+      let saved = this.props.currentDraft.isSaved ? "Saved" : "Not Saved"
       return (
          <div>
             <div className="PostEditor-root">
@@ -140,7 +141,8 @@ class PostEditor extends Component {
                   />
                </div>
             </div>
-            <button onClick={this.saveOrUpdateDraft}>Save As Draft</button>
+            <span>{saved}</span>
+            <button onClick={this.saveOrUpdateDraft}>Save Draft</button>
          </div>
       )
    }
