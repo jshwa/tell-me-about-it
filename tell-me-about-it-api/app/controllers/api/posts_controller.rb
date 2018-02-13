@@ -10,7 +10,11 @@ class Api::PostsController < ApplicationController
     end
 
     def show
+      if logged_in? && current_user.posts.include?(@post)
         render json: @post
+      else
+         render json: {status: "error", message: "User not logged in"}
+      end
     end
 
     def new
@@ -18,7 +22,16 @@ class Api::PostsController < ApplicationController
     end
 
     def create
-
+      if logged_in?
+         post = current_user.posts.build(post_params)
+         if post.save
+            render json: post
+         else
+            render json: {message: "Post not saved"}, status: 400
+         end
+      else
+         render json: {status: 'error', message: "User not logged in"}
+      end
     end
 
     def edit
@@ -37,5 +50,9 @@ class Api::PostsController < ApplicationController
 
     def set_post
         @post = Post.find_by(id: params[:id])
+    end
+
+    def post_params
+      params.require('post').permit(:title, :content, :draft, :user_id, draft_json: {})
     end
 end
