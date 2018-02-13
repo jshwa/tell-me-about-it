@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Editor, EditorState } from 'draft-js';
+import { Editor, EditorState, RichUtils, convertToRaw } from 'draft-js';
 import { connect } from 'react-redux';
-import { saveEditorState } from '../actions/Drafts'
+import { saveEditorState } from '../actions/Drafts';
 import '../../node_modules/draft-js/dist/Draft.css';
+import './PostEditor.css';
 
 class PostEditor extends Component {
    
@@ -11,9 +12,21 @@ class PostEditor extends Component {
       this.props.saveEditorState(editorState)
    };
 
+   saveDraft = () => {
+      const rawDraft = convertToRaw(this.props.editorState.getCurrentContent());
+   }
+
+   toggleCode = () => {
+      this.onChange(RichUtils.toggleCode(this.props.editorState));
+   }
+
    render(){
       return (
-         <Editor editorState={this.props.editorState} onChange={this.onChange} />
+         <div>
+            <button onClick={this.toggleCode}>Code</button>
+            <Editor editorState={this.props.editorState} onChange={this.onChange} />
+            <button onClick={this.saveDraft} >Save</button>
+         </div>
       )
    }
 }
