@@ -1,0 +1,25 @@
+.Hub-container {
+    margin: 0 auto;
+    padding: 0;
+    width: 40em;
+    background: #fff;
+    box-shadow: 1px 1px 5px #888;
+    align-self: start;
+}
+
+.Hub-nav {
+    margin: 0;
+    padding: 0; 
+    list-style: none;
+    border-bottom: 1px solid rgb(218, 216, 216);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.Hub-nav li {
+    padding: 1em;
+}
+
+.Hub-nav li:hover {
+    background-color: rgb(247, 247, 247);
+}
