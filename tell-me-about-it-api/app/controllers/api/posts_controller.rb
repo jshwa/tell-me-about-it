@@ -1,5 +1,5 @@
 class Api::PostsController < ApplicationController
-    before_action :set_post, only: [:show, :new, :edit, :destroy]
+    before_action :set_post, only: [:show, :update, :destroy]
 
     def index
       if logged_in?
@@ -17,10 +17,6 @@ class Api::PostsController < ApplicationController
       end
     end
 
-    def new
-
-    end
-
     def create
       if logged_in?
          post = current_user.posts.build(post_params)
@@ -34,11 +30,16 @@ class Api::PostsController < ApplicationController
       end
     end
 
-    def edit
-
-    end
-
     def update
+      if logged_in? && current_user.posts.include?(@post)
+         if @post.update(post_params)
+            render json: @post
+         else
+            render json: {message: "Post not saved"}, status: 400
+         end
+      else
+         render json: {status: 'error', message: "User not logged in"}
+      end
 
     end
 
