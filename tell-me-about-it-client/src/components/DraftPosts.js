@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadDraftPost, setCurrentDraft } from '../actions/Drafts';
-import { convertFromRaw } from 'draft-js';
 import './Posts.css';
 
 class DraftPosts extends Component {

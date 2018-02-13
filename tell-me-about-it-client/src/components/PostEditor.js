@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Editor, EditorState, RichUtils, convertToRaw, getDefaultKeyBinding } from 'draft-js';
+import { Editor, EditorState, RichUtils, getDefaultKeyBinding } from 'draft-js';
 import { connect } from 'react-redux';
 import { saveEditorState, setCurrentDraft } from '../actions/Drafts';
-import StyleButton from './StyleButton';
 import { BlockStyleControls, InlineStyleControls } from './StyleControls';
 import PostActions from './PostActions';
 import '../../node_modules/draft-js/dist/Draft.css';
