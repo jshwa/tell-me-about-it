@@ -1,3 +1,5 @@
+import { convertFromRaw, EditorState } from 'draft-js';
+
 const Api_Url = 'http://localhost:3001/api'
 
 export const addDraftPosts = drafts => {
@@ -16,8 +18,17 @@ export const getDraftPosts = token => {
 }
 
 export const saveEditorState = editorState => {
+   debugger
    return {
       type: "UPDATE_EDITOR_STATE",
       editorState: editorState
+   }
+}
+
+export const loadDraftPost = rawData => {
+   const contentState = convertFromRaw(rawData);
+   return {
+      type: "UPDATE_EDITOR_STATE",
+      editorState: EditorState.createWithContent(contentState)
    }
 }
