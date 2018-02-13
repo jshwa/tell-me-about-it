@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Editor, EditorState, RichUtils, convertToRaw, getDefaultKeyBinding } from 'draft-js';
 import { connect } from 'react-redux';
-import { saveEditorState } from '../actions/Drafts';
+import { saveEditorState, postSaved } from '../actions/Drafts';
 import StyleButton from './StyleButton';
 import { BlockStyleControls, InlineStyleControls } from './StyleControls';
 import '../../node_modules/draft-js/dist/Draft.css';
@@ -79,7 +79,10 @@ class PostEditor extends Component {
          body: draft})
       .then(res => res.json())
       .catch(error => console.error('Error:', error))
-      .then(response => console.log('Success:', response))
+      .then(response => {
+         console.log('Success:', response);
+         this.props.postSaved(true);
+      })
 
    }
 
@@ -134,8 +137,8 @@ class PostEditor extends Component {
 const mapStateToProps = state => {
    return {
       userData: state.userData,
-      editorState: state.github.editorState
+      editorState: state.posts.editorState
    }
 }
 
-export default connect(mapStateToProps, { saveEditorState })(PostEditor)
+export default connect(mapStateToProps, { saveEditorState, postSaved })(PostEditor)

@@ -6,11 +6,11 @@ import {
 } from 'redux';
 import thunk from 'redux-thunk';
 import userReducer from './reducers/Users'
-import githubReducer from './reducers/Github'
+import postsReducer from './reducers/Posts'
 
 const rootReducer = combineReducers({
     userData : userReducer,
-    github : githubReducer
+    posts : postsReducer
 });
 const middleware = [thunk];
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -32,3 +32,10 @@ export const loadDraftPost = rawData => {
       editorState: EditorState.createWithContent(contentState)
    }
 }
+
+export const postSaved = bool => {
+   return {
+      type: "UPDATE_SAVED_STATUS",
+      isSaved: bool
+   }
+}

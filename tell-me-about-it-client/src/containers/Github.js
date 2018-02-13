@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import GithubLogin from '../components/GithubLogin';
 import PublishedPosts from '../components/PublishedPosts';
 import DraftPosts from '../components/DraftPosts';
-import { setTab, getPublishedPosts } from '../actions/Github';
+import { setTab, getPublishedPosts } from '../actions/Posts';
 import './Github.css';
 
 class Github extends Component {
@@ -19,15 +19,15 @@ class Github extends Component {
    }
 
    render() {
-        const active = this.props.github.tab;
+        const active = this.props.posts.tab;
 
         let tab = null;
         switch (active) {
             case "Posts":
-               tab = <PublishedPosts posts={this.props.github.posts} />
+               tab = <PublishedPosts posts={this.props.posts.posts} />
                break;
             case "Drafts":
-                tab = <DraftPosts posts={this.props.github.drafts} /> 
+                tab = <DraftPosts posts={this.props.posts.drafts} /> 
                 break;
             case "Sign In":
                 tab = <GithubLogin />
@@ -51,7 +51,7 @@ class Github extends Component {
 const mapStateToProps = state => {
 	return {
       userData: state.userData,
-      github: state.github
+      posts: state.posts
 	}
 }
 
