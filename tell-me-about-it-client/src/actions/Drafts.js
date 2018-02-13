@@ -18,7 +18,6 @@ export const getDraftPosts = token => {
 }
 
 export const saveEditorState = editorState => {
-   debugger
    return {
       type: "UPDATE_EDITOR_STATE",
       editorState: editorState
@@ -33,9 +32,9 @@ export const loadDraftPost = rawData => {
    }
 }
 
-export const postSaved = bool => {
+export const setCurrentDraft = props => {
    return {
-      type: "UPDATE_SAVED_STATUS",
-      isSaved: bool
+      type: "SET_CURRENT_DRAFT",
+      props
    }
 }

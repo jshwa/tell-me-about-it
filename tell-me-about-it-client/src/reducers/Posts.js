@@ -3,8 +3,11 @@ import { EditorState } from 'draft-js';
 const postsReducer = (state = {
    tab:"Sign In", 
    posts:[], 
-   drafts:[], 
-   isSaved: false,
+   drafts:[],
+   currentDraft: {
+      id: null,
+      isSaved: false
+   },
    editorState: EditorState.createEmpty()
 }, action) => {
    switch(action.type) {
@@ -16,8 +19,8 @@ const postsReducer = (state = {
          return Object.assign({}, state, {drafts: state.drafts.concat(action.drafts)})
       case 'UPDATE_EDITOR_STATE':
          return Object.assign({}, state, {editorState: action.editorState})
-      case 'UPDATE_SAVED_STATUS':
-         return Object.assign({}, state, {isSaved: action.isSaved})
+      case 'SET_CURRENT_DRAFT':
+         return Object.assign({}, state, {currentDraft: action.props})
       default: 
          return state;
    }

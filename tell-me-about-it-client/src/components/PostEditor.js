@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Editor, EditorState, RichUtils, convertToRaw, getDefaultKeyBinding } from 'draft-js';
 import { connect } from 'react-redux';
-import { saveEditorState, postSaved } from '../actions/Drafts';
+import { saveEditorState, setCurrentDraft } from '../actions/Drafts';
 import StyleButton from './StyleButton';
 import { BlockStyleControls, InlineStyleControls } from './StyleControls';
 import '../../node_modules/draft-js/dist/Draft.css';
@@ -66,24 +66,36 @@ class PostEditor extends Component {
       }
      }
 
-   saveDraft = () => {
+   saveOrUpdateDraft = () => {
       const rawDraft = convertToRaw(this.props.editorState.getCurrentContent());
       const draft = JSON.stringify({ post: {
          title: rawDraft.blocks[0].text,
          draft_json: rawDraft
          }
       })
-      fetch(`http://localhost:3001/api/posts?token=${this.props.userData.token}`, {
-         method: 'POST',
-         headers: {"Content-Type": "application/json"},
-         body: draft})
-      .then(res => res.json())
-      .catch(error => console.error('Error:', error))
-      .then(response => {
-         console.log('Success:', response);
-         this.props.postSaved(true);
-      })
 
+      if (this.props.currentDraft.isSaved === true) {
+         fetch(`http://localhost:3001/api/posts/${this.props.currentDraft.id}?token=${this.props.userData.token}`, {
+            method: 'PATCH',
+            headers: {"Content-Type": "application/json"},
+            body: draft})
+         .then(res => res.json())
+         .catch(error => console.error('Error:', error))
+         .then(response => {
+            console.log('Success:', response);
+         })
+      } else {
+         fetch(`http://localhost:3001/api/posts?token=${this.props.userData.token}`, {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: draft})
+         .then(res => res.json())
+         .catch(error => console.error('Error:', error))
+         .then(response => {
+            console.log('Success:', response);
+            this.props.setCurrentDraft({id: response.id, isSaved: true});
+         })
+      }
    }
 
    render(){
@@ -128,7 +140,7 @@ class PostEditor extends Component {
                   />
                </div>
             </div>
-            <button onClick={this.saveDraft}>Save As Draft</button>
+            <button onClick={this.saveOrUpdateDraft}>Save As Draft</button>
          </div>
       )
    }
@@ -137,8 +149,9 @@ class PostEditor extends Component {
 const mapStateToProps = state => {
    return {
       userData: state.userData,
-      editorState: state.posts.editorState
+      editorState: state.posts.editorState,
+      currentDraft: state.posts.currentDraft
    }
 }
 
-export default connect(mapStateToProps, { saveEditorState, postSaved })(PostEditor)
+export default connect(mapStateToProps, { saveEditorState, setCurrentDraft })(PostEditor)
