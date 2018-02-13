@@ -9,7 +9,7 @@ import './Hub.css';
 class Hub extends Component {
 
    componentWillMount(){
-      if (this.props.userData) {
+      if (this.props.userData.login !== null) {
          this.props.setTab("Drafts")
       }
    }

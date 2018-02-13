@@ -16,7 +16,7 @@ class AuthenticationController < ApplicationController
         avatar_url: avatar_url
       )
       
-      redirect_to "#{issuer}?token=#{token}&login=#{login}&oauth=#{oauth_token}"
+      redirect_to "#{issuer}/users?token=#{token}&login=#{login}&oauth=#{oauth_token}"
     rescue StandardError => error
       redirect_to "#{issuer}?error=#{error.message}"
     end
