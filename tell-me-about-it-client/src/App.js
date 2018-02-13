@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Switch, Route } from 'react-router-dom';
 import './App.css';
 import Clock from './components/Clock';
 import Hub from './containers/Hub';
@@ -14,8 +15,10 @@ class App extends Component {
       if (window.location.search !== "") {
          const params = this.getQueryParams();
          this.props.loginUser(params);
-         this.props.getPublishedPosts(params.login);
-         this.props.getDraftPosts(params.token);
+      }
+      if (this.props.userData.login !== null) {
+         this.props.getPublishedPosts(this.props.userData.login);
+         this.props.getDraftPosts(this.props.userData.token);
       }
 	}
 
@@ -30,13 +33,21 @@ class App extends Component {
 
 	render() {
       return (
-      <div className="App">
-        <Clock />
-        <Drafter />
-        <Hub /> 
-      </div>
-    );
-  }
+         <div className="App">
+            <Clock />
+            <Switch>
+               <Route exact path='/' component={Hub} />
+               <Route path='/draft' component={Drafter} />
+            </Switch>
+         </div>
+      );
+   }
 }
 
-export default connect(null, { loginUser, getPublishedPosts, getDraftPosts })(App);
+const mapStateToProps = state => {
+   return {
+      userData: state.userData
+   }
+}
+
+export default connect(mapStateToProps, { loginUser, getPublishedPosts, getDraftPosts })(App);
