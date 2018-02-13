@@ -68,6 +68,19 @@ class PostEditor extends Component {
 
    saveDraft = () => {
       const rawDraft = convertToRaw(this.props.editorState.getCurrentContent());
+      const draft = JSON.stringify({ post: {
+         title: rawDraft.blocks[0].text,
+         draft_json: rawDraft
+         }
+      })
+      fetch(`http://localhost:3001/api/posts?token=${this.props.userData.token}`, {
+         method: 'POST',
+         headers: {"Content-Type": "application/json"},
+         body: draft})
+      .then(res => res.json())
+      .catch(error => console.error('Error:', error))
+      .then(response => console.log('Success:', response))
+
    }
 
    render(){
@@ -112,7 +125,7 @@ class PostEditor extends Component {
                   />
                </div>
             </div>
-            <button onClick={this.saveDraft} >Save</button>
+            <button onClick={this.saveDraft}>Save As Draft</button>
          </div>
       )
    }
@@ -120,6 +133,7 @@ class PostEditor extends Component {
 
 const mapStateToProps = state => {
    return {
+      userData: state.userData,
       editorState: state.github.editorState
    }
 }
