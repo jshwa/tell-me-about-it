@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import './GithubLogin.css';
 
-class GithubLogin extends Component {
-    render(){
-        return (
-            <a href='https://github.com/login/oauth/authorize?client_id=a345733541ea45055fcb&scope=repo'>Login with Github</a>
-        )
-    }
+export const GithubLogin = () => {
+   return (
+      <div className="Github-login">
+         <a href='https://github.com/login/oauth/authorize?client_id=a345733541ea45055fcb&scope=repo'>Login with Github</a>
+      </div>
+   )
 }
 
-export default GithubLogin

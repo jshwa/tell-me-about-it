@@ -1,0 +1,24 @@
+.Github-login {
+   height: 10em;
+   width: 20em;
+   background: white;
+   justify-self: center;
+   box-shadow: 0 3px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.Github-login a {
+   text-indent: 1em;
+   text-decoration: none;
+   line-height: 10em;
+   color: white;
+   background-image: url('./images/GitHub-logo.png');
+   background-repeat: no-repeat;
+   background-position: 5px 5px;
+   background-color: rgba(0, 0, 0, 0.8);
+   padding: 1em 1em 1em 3.5em;
+   border-top: 1px solid #CCCCCC;
+   border-right: 1px solid #333333;
+   border-bottom: 1px solid #333333;
+   border-left: 1px solid #CCCCCC;
+   border-radius: .5em;
+}
