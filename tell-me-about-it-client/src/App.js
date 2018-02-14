@@ -19,6 +19,7 @@ class App extends Component {
             <Switch>
                <Route path='/login' component={GithubLogin} />
                <Route path='/users' component={Users} />
+               <LoggedInRoute path='/posts/:id' component={Drafter} auth={this.props.userData.loggedIn} />
                <LoggedInRoute path='/posts' component={Hub} auth={this.props.userData.loggedIn} />
                <LoggedInRoute path='/drafts/new' component={Drafter} auth={this.props.userData.loggedIn} />
                <LoggedInRoute path='/drafts/:id' component={Drafter} auth={this.props.userData.loggedIn} />
