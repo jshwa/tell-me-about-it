@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20180214211925) do
     t.datetime "updated_at", null: false
     t.json "draft_json"
     t.boolean "draft", default: true
-    t.integer "likes"
+    t.integer "likes", default: 0
   end
 
   create_table "users", force: :cascade do |t|
