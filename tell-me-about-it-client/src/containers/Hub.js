@@ -28,7 +28,6 @@ class Hub extends Component {
             tab = <DraftPosts posts={this.props.posts.drafts} /> 
             break;
          default:
-            debugger;
             <Redirect to='/' /> 
       }
       return (
