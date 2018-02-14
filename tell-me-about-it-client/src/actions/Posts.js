@@ -1,16 +1,7 @@
-export const setTab = tab => {
-   return {
-      type: 'CURRENT_TAB',
-      tab: tab
-   }
-}
-
-export const addPublishedPost = post => {
-   return {
+export const addPublishedPost = post => ({
       type: 'ADD_PUBLISHED_POST',
       post: post
-   }
-}
+})
 
 export const getPublishedPosts = login => {
    const githubURL = `http://api.github.com/repos/${login}/${login}.github.io/`
