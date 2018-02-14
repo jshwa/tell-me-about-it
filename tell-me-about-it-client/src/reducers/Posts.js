@@ -18,6 +18,10 @@ const postsReducer = (state = {
          return Object.assign({}, state, {editorState: action.editorState})
       case 'SET_CURRENT_DRAFT':
          return Object.assign({}, state, {currentDraft: action.props})
+      case 'RESET_POSTS':
+         return Object.assign({}, state, {posts: []})
+      case 'RESET_DRAFTS':
+         return Object.assign({}, state, {drafts: []})
       default: 
          return state;
    }

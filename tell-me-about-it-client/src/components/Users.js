@@ -9,8 +9,6 @@ class Users extends Component {
    componentWillMount() {
       const params = this.getQueryParams();
       this.props.loginUser(params);
-      this.props.getPublishedPosts(params.login);
-      this.props.getDraftPosts(params.token);
    }
 
    getQueryParams() {

@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, withRouter } from 'react-router-dom';
 import PublishedPosts from '../components/PublishedPosts';
 import DraftPosts from '../components/DraftPosts';
-import { getPublishedPosts } from '../actions/Posts';
-import { getDraftPosts } from '../actions/Drafts';
+import { getPublishedPosts, resetPosts } from '../actions/Posts';
+import { getDraftPosts, resetDrafts } from '../actions/Drafts';
 import './Hub.css';
 
 class Hub extends Component {
 
    componentDidMount(){
-      if (this.props.posts.posts.length === 0) {
-         this.props.getPublishedPosts(this.props.userData.login);
-      }
-      if (this.props.posts.drafts.length === 0) {
-         this.props.getDraftPosts(this.props.userData.token);
-      }
+      this.props.resetPosts();
+      this.props.resetDrafts();
+      this.props.getPublishedPosts(this.props.userData.login);
+      this.props.getDraftPosts(this.props.userData.token);
    }
 
    render() {
@@ -47,4 +45,4 @@ const mapStateToProps = state => ({
       posts: state.posts
 })
 
-export default connect(mapStateToProps, { getPublishedPosts, getDraftPosts })(Hub)
+export default withRouter(connect(mapStateToProps, { getPublishedPosts, getDraftPosts, resetPosts, resetDrafts })(Hub))

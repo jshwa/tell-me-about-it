@@ -16,8 +16,7 @@ class App extends Component {
       fetch(process.env.REACT_APP_BACKGROUND_URL)
       .then(resp => resp.json())
       .then(img => {
-         document.getElementById('site-background')
-         .style.backgroundImage = `url('${img.urls.full}')`
+         document.getElementById('site-background').style.backgroundImage = `url('${img.urls.full}')`
       })
       )
 

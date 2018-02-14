@@ -36,3 +36,7 @@ export const displayPublishedPost = markdown => {
       editorState: EditorState.createWithContent(contentState)
    }
 }
+
+export const resetPosts = () => ({
+   type: "RESET_POSTS"
+})
