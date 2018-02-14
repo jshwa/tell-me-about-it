@@ -3,7 +3,7 @@ class Api::PostsController < ApplicationController
 
     def index
       if logged_in?
-        render json: current_user.posts
+        render json: current_user.posts.order(likes: :desc)
       else
          render json: {status: "error", message: "User not logged in"}
       end

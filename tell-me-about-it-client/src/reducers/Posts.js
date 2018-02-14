@@ -24,12 +24,9 @@ const postsReducer = (state = {
          return Object.assign({}, state, {drafts: []})
       case 'ADD_DRAFT':
          const index = state.drafts.findIndex(draft => draft.id === action.draft.id)
-         return Object.assign({}, state, {
-            drafts: 
-               state.drafts.slice(0,index)
-               .concat(action.draft)
-               .concat(state.drafts.slice(index+1))
-            })
+         const newDrafts = state.drafts.slice(0,index).concat(action.draft).concat(state.drafts.slice(index+1))
+         const orderedDrafts = newDrafts.sort((a,b) => b.likes - a.likes)
+         return Object.assign({}, state, { drafts: orderedDrafts })
       default: 
          return state;
    }
