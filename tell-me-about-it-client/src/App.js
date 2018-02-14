@@ -11,6 +11,16 @@ import { LoggedInRoute } from './containers/LoggedInRoute';
 import { Prompt } from './components/Prompt';
 
 class App extends Component {
+
+   changeBackground = () => (
+      fetch(process.env.REACT_APP_BACKGROUND_URL)
+      .then(resp => resp.json())
+      .then(img => {
+         document.getElementById('site-background')
+         .style.backgroundImage = `url('${img.urls.full}')`
+      })
+      )
+
 	render() {
       return (
          <div className="App">
@@ -28,6 +38,7 @@ class App extends Component {
                  this.props.userData.loggedIn === false ? <Redirect to= "/login" /> : <Redirect to= "/drafts" />
                )}/>
             </Switch>
+            <div className="change-background-div"><button className="change-background" onClick={this.changeBackground}>></button></div>
          </div>
       );
    }

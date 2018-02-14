@@ -48,6 +48,25 @@
    text-decoration: none;
 }
 
+.change-background-div {
+   margin: 1em;
+   grid-row-start: 9;
+   grid-row-end: 10;
+   align-self: end;
+   justify-self: end;
+}
+
+.change-background {
+   background-color: Transparent;
+   text-decoration: none;
+   color: rgba(78, 78, 78, 0.4);
+   padding: 3px 6px;
+   border: 1px solid rgba(78, 78, 78, 0.4); 
+   border-radius: 100%;
+   font-size: 1em;
+   outline:none;
+}
+
 .blinking-cursor {
    display: block;
    font-weight: 100;
