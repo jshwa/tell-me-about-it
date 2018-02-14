@@ -5,7 +5,7 @@ import './App.css';
 import Clock from './components/Clock';
 import Users from './components/Users';
 import { GithubLogin } from './components/GithubLogin';
-import { Drafter } from './containers/Drafter';
+import Drafter from './containers/Drafter';
 import Hub from './containers/Hub';
 import { LoggedInRoute } from './containers/LoggedInRoute';
 import { Prompt } from './components/Prompt';
@@ -19,9 +19,10 @@ class App extends Component {
             <Switch>
                <Route path='/login' component={GithubLogin} />
                <Route path='/users' component={Users} />
-               <LoggedInRoute path='/drafts' component={Hub} auth={this.props.userData.loggedIn} />
                <LoggedInRoute path='/posts' component={Hub} auth={this.props.userData.loggedIn} />
-               <LoggedInRoute path='/drafter' component={Drafter} auth={this.props.userData.loggedIn} />
+               <LoggedInRoute path='/drafts/new' component={Drafter} auth={this.props.userData.loggedIn} />
+               <LoggedInRoute path='/drafts/:id' component={Drafter} auth={this.props.userData.loggedIn} />
+               <LoggedInRoute path='/drafts' component={Hub} auth={this.props.userData.loggedIn} />
                <Route exact path='/' render={() => (
                  this.props.userData.loggedIn === false ? <Redirect to= "/login" /> : <Redirect to= "/drafts" />
                )}/>
