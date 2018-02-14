@@ -18,6 +18,10 @@
     grid-template-columns: 1fr 1fr;
 }
 
+.Hub-nav a {
+   text-decoration: none;
+}
+
 .Hub-nav li {
     padding: 1em;
 }
