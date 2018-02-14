@@ -3,6 +3,8 @@
    width: 50em;
    height: 29em;
    background-color: white;
+   grid-row-start: 5;
+   grid-row-end: 6;
 }
 
 .Editor {
