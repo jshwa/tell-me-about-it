@@ -1,3 +1,6 @@
+import { convertFromRaw, EditorState } from 'draft-js';
+import { markdownToDraft} from 'markdown-draft-js';
+
 export const addPublishedPost = post => ({
       type: 'ADD_PUBLISHED_POST',
       post: post
@@ -22,5 +25,14 @@ export const getPublishedPosts = login => {
          .then(resp => resp.text())
          .then(post => dispatch(addPublishedPost(post)))
       )))
+   }
+}
+
+export const displayPublishedPost = markdown => {
+   const rawData = markdownToDraft(markdown)
+   const contentState = convertFromRaw(rawData);
+   return {
+      type: "UPDATE_EDITOR_STATE",
+      editorState: EditorState.createWithContent(contentState)
    }
 }
