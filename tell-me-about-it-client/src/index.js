@@ -6,11 +6,12 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import store from './store';
-import { saveState } from './localStorage'
+import { saveState } from './localStorage';
+import throttle from 'lodash/throttle';
 
-store.subscribe(() => {
+store.subscribe(throttle(() => {
    saveState({ userData: store.getState().userData });
-});
+}, 3000));
 
 ReactDOM.render(
    <Provider store={store}>
