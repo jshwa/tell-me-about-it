@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { addDraft } from '../actions/Drafts'
 
 class PostItem extends React.Component {
    api = () => {
@@ -24,7 +25,7 @@ class PostItem extends React.Component {
          body: likes}
       )
       .then(response => response.json())
-      .then(drafts => console.log(drafts))
+      .then(draft => this.props.addDraft(draft))
    }
 
    render(){
@@ -45,4 +46,4 @@ const mapStateToProps = state => ({
    token: state.userData.token
 })
 
-export default connect(mapStateToProps)(PostItem)
+export default connect(mapStateToProps, { addDraft })(PostItem)
