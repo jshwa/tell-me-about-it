@@ -28,7 +28,7 @@ class Hub extends Component {
             tab = <DraftPosts posts={this.props.posts.drafts} /> 
             break;
          default:
-            <Redirect to='/' /> 
+            tab = <Redirect to='/' /> 
       }
       return (
          <div className="Hub-container">

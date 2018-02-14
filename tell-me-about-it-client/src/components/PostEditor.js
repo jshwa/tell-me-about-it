@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { Editor, EditorState, RichUtils, getDefaultKeyBinding } from 'draft-js';
+import { Editor, RichUtils, getDefaultKeyBinding } from 'draft-js';
 import { connect } from 'react-redux';
 import { saveEditorState, setCurrentDraft } from '../actions/Drafts';
 import { BlockStyleControls, InlineStyleControls } from './StyleControls';
@@ -26,8 +25,7 @@ class PostEditor extends Component {
     }
 
     mapKeyToEditorCommand = (e) => {
-      switch (e.keyCode) {
-        case 9: // TAB
+      if (e.keyCode === 9) {
           const newEditorState = RichUtils.onTab(
             e,
             this.props.editorState,
