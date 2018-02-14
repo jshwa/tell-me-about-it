@@ -1,17 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Posts.css';
-import { Link } from 'react-router-dom';
+import PostItem from './PostItem';
 
-class DraftPosts extends Component {
-   render() {
-      return (
-         <ul className="Github-posts">
-            {this.props.posts.map(post => <Link to={`/drafts/${post.id}`}>
-                  <li key={post.id} data-id={post.id}>{post.title}</li>
-               </Link>)}
-         </ul>
-      )
-   }
-}
+const DraftPosts = ({posts}) => (
+   <ul className="Github-posts">
+      {posts.map(post => 
+            <PostItem post={post}/>
+         )}
+   </ul>
+)
 
 export default DraftPosts

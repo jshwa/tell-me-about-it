@@ -67,6 +67,25 @@
    outline:none;
 }
 
+.sign-out-div {
+   margin: 1em;
+   grid-row-start: 1;
+   grid-row-end: 2;
+   align-self: start;
+   justify-self: end;
+}
+
+.sign-out-button {
+   background-color: Transparent;
+   text-decoration: none;
+   color: rgba(78, 78, 78, 0.4);
+   padding: 2px 6px;
+   border: 1px solid rgba(78, 78, 78, 0.4); 
+   border-radius: 100%;
+   font-size: 1em;
+   outline:none;
+}
+
 .blinking-cursor {
    display: block;
    font-weight: 100;
