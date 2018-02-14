@@ -41,7 +41,7 @@ class PostActions extends Component {
 
    postToGithub = () => {
       const rawDraft = convertToRaw(this.props.editorState.getCurrentContent());
-      const encodedMarkdown = btoa(draftToMarkdown(rawDraft));
+      const encodedMarkdown = btoa(window.unescape(encodeURIComponent(draftToMarkdown(rawDraft))));
       const login = this.props.userData.login;
       const title = rawDraft.blocks[0].text.toLowerCase().replace(/\s/g, "_");
       const date = moment().format("YYYY-MM-DD");
