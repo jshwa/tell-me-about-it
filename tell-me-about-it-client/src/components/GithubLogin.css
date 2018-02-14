@@ -1,9 +1,12 @@
 .Github-login {
+   margin-top: 1em;
    height: 10em;
    width: 20em;
    background: white;
    justify-self: center;
    box-shadow: 0 3px 2px 2px rgba(0, 0, 0, 0.3);
+   grid-row-start: 6;
+   grid-row-end: 7;
 }
 
 .Github-login a {
