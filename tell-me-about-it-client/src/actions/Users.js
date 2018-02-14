@@ -4,3 +4,10 @@ export const loginUser = userData => {
       userData
    }
 }
+
+export const setLoggedIn = bool => {
+   return {
+      type: "SET_LOGGED_IN",
+      loggedIn: bool
+   }
+}

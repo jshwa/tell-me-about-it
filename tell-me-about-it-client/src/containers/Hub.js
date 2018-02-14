@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import GithubLogin from '../components/GithubLogin';
+import { GithubLogin } from '../components/GithubLogin';
 import PublishedPosts from '../components/PublishedPosts';
 import DraftPosts from '../components/DraftPosts';
 import { setTab, getPublishedPosts } from '../actions/Posts';
