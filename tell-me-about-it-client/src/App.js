@@ -8,20 +8,23 @@ import { GithubLogin } from './components/GithubLogin';
 import { Drafter } from './containers/Drafter';
 import Hub from './containers/Hub';
 import { LoggedInRoute } from './containers/LoggedInRoute';
+import { Prompt } from './components/Prompt';
 
 class App extends Component {
 	render() {
       return (
          <div className="App">
             <Clock />
+            <Prompt />
             <Switch>
                <Route path='/login' component={GithubLogin} />
-               <Route exact path='/' render={() => (
-                 this.props.userData.loggedIn === false ? <Redirect to= "/login" /> : <Redirect to= "/drafts" />
-               )}/>
                <Route path='/users' component={Users} />
                <LoggedInRoute path='/drafts' component={Hub} auth={this.props.userData.loggedIn} />
                <LoggedInRoute path='/posts' component={Hub} auth={this.props.userData.loggedIn} />
+               <LoggedInRoute path='/drafter' component={Drafter} auth={this.props.userData.loggedIn} />
+               <Route exact path='/' render={() => (
+                 this.props.userData.loggedIn === false ? <Redirect to= "/login" /> : <Redirect to= "/drafts" />
+               )}/>
             </Switch>
          </div>
       );
