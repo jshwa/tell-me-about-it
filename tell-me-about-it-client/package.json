@@ -7,6 +7,7 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "draft-js": "^0.10.5",
+    "lodash": "^4.17.5",
     "markdown-draft-js": "^0.6.2",
     "moment": "^2.20.1",
     "react": "^16.2.0",
