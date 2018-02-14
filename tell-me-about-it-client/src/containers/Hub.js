@@ -9,9 +9,13 @@ import './Hub.css';
 
 class Hub extends Component {
 
-   componentWillMount(){
-      this.props.getPublishedPosts(this.props.userData.login);
-      this.props.getDraftPosts(this.props.userData.token);
+   componentDidMount(){
+      if (this.props.posts.posts.length === 0) {
+         this.props.getPublishedPosts(this.props.userData.login);
+      }
+      if (this.props.posts.drafts.length === 0) {
+         this.props.getDraftPosts(this.props.userData.token);
+      }
    }
 
    render() {
@@ -21,8 +25,8 @@ class Hub extends Component {
             tab = <PublishedPosts posts={this.props.posts.posts} />
             break;
          case "/drafts":
-               tab = <DraftPosts posts={this.props.posts.drafts} /> 
-               break;
+            tab = <DraftPosts posts={this.props.posts.drafts} /> 
+            break;
          default:
             debugger;
             <Redirect to='/' /> 
