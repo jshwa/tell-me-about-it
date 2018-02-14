@@ -63,3 +63,20 @@
  .PostEditor-activeButton {
    color: #5890ff;
  }
+
+.PostAction-buttons {
+   margin: 1em;
+   height: 2.5em;
+   border: 1px solid rgba(143, 210, 255, 0.938);
+   background-color: rgba(143, 210, 255, 0.938);
+   border-radius: 2px;
+   float: right;
+}
+
+.saved-message {
+   margin: 1em;
+   float: left;
+   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+   font-size: 1em;
+   color: #888;
+}

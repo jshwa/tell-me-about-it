@@ -59,9 +59,9 @@ class PostActions extends Component {
       let saved = this.props.currentDraft.isSaved ? "Saved" : "Not Saved"
       return (
          <div>
-            <span>{saved}</span>
-            <button onClick={this.saveOrUpdateDraft}>Save Draft</button>
-            <button onClick={this.postToGithub}>Post to Github</button>
+            <span className="saved-message">{saved}</span>
+            <button className="PostAction-buttons" onClick={this.saveOrUpdateDraft}>Save Draft</button>
+            <button className="PostAction-buttons" onClick={this.postToGithub}>Post to Github</button>
          </div>
       )
    }

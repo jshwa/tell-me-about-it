@@ -28,8 +28,10 @@ class Drafter extends Component {
       return (
          <div className="Drafter-container">
             <PostEditor />
-            <Link to="/drafts"><button>Back to Drafts</button></Link>
-            <Link to="/posts"><button>Back to Posts</button></Link>
+            <div className="backButtons">
+               <Link to="/drafts"><button className="back-button">Back to Drafts</button></Link>
+               <Link to="/posts"><button className="back-button">Back to Posts</button></Link>
+            </div>
          </div>
       )
    }
