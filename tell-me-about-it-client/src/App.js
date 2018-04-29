@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import { Switch, Route, Redirect, withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './App.css';
 import Clock from './components/Clock';
@@ -9,6 +9,8 @@ import Drafter from './containers/Drafter';
 import Hub from './containers/Hub';
 import { LoggedInRoute } from './containers/LoggedInRoute';
 import { Prompt } from './components/Prompt';
+import { clearState } from './localStorage';
+import { logoutUser } from './actions/Users';
 
 class App extends Component {
 
@@ -19,6 +21,11 @@ class App extends Component {
          document.getElementById('site-background').style.backgroundImage = `url('${img.urls.full}')`
       })
       )
+
+   signOut = () => {
+      this.props.logoutUser();
+      clearState();
+   }
 
 	render() {
       return (
@@ -54,4 +61,4 @@ const mapStateToProps = state => {
    }
 }
 
-export default withRouter(connect(mapStateToProps)(App))
+export default withRouter(connect(mapStateToProps, { logoutUser })(App))
