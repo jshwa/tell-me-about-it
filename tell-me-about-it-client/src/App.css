@@ -57,14 +57,45 @@
 }
 
 .change-background {
+   height: 30px;
+   width: 30px;
    background-color: Transparent;
    text-decoration: none;
-   color: rgba(78, 78, 78, 0.4);
-   padding: 3px 6px;
-   border: 1px solid rgba(78, 78, 78, 0.4); 
-   border-radius: 100%;
+   color: rgba(0, 0, 0, 0.4);
+   border: 2px solid rgba(0, 0, 0, 0.4); 
+   border-radius: 50%;
    font-size: 1em;
+   font-weight: bold;
    outline:none;
+}
+
+.change-background:hover {
+   background-color:rgba(0, 0, 0, 0.4);
+   color: white; 
+   cursor: pointer;
+}
+
+.sign-out-div {
+   margin: 1em;
+   grid-row: 1 / 2;
+   align-self: start;
+   justify-self: end;
+}
+
+.sign-out {
+   height: 25px;
+   width: 25px;
+   background-color: Transparent;
+   text-decoration: none;
+   color: rgba(0, 0, 0, 0.4);
+   border-radius: 50%;
+   outline:none;
+}
+
+.sign-out:hover {
+   background-color:rgba(0, 0, 0, 0.4);
+   color: red; 
+   cursor: pointer;
 }
 
 .blinking-cursor {

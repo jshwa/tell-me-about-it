@@ -37,7 +37,12 @@ class App extends Component {
                  this.props.userData.loggedIn === false ? <Redirect to= "/login" /> : <Redirect to= "/drafts" />
                )}/>
             </Switch>
-            <div className="change-background-div"><button className="change-background" onClick={this.changeBackground}>></button></div>
+            <div className="change-background-div">
+               <button className="change-background" onClick={this.changeBackground}>></button>
+            </div>
+            <div className="sign-out-div">
+               <button className="sign-out" onClick={this.signOut}>X</button>
+            </div>
          </div>
       );
    }
