@@ -11,3 +11,7 @@ export const setLoggedIn = bool => {
       loggedIn: bool
    }
 }
+
+export const logoutUser = () => ({
+   type: "LOGOUT_USER"
+})
