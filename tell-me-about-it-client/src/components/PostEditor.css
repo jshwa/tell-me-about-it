@@ -1,5 +1,6 @@
 .PostEditor-editor .public-DraftEditor-content {
    min-height: 20em;
+   max-height: 40vh;
    display: block;
    padding: 1.5em;
  }
@@ -79,4 +80,8 @@
    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
    font-size: 1em;
    color: #888;
+}
+
+.public-DraftEditor-content {
+   overflow: auto;
 }
