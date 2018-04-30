@@ -10,26 +10,44 @@ import Hub from './containers/Hub';
 import { LoggedInRoute } from './containers/LoggedInRoute';
 import { Prompt } from './components/Prompt';
 import { clearState } from './localStorage';
-import { setBg, logoutUser } from './actions/Users';
+import { setBg, addBg, logoutUser } from './actions/Users';
 
 class App extends Component {
-
    componentDidMount(){
-      if (this.props.userData.loggedIn && this.props.userData.bgImg == null) {
-      } else if (this.props.userData.loggedIn &&
-         document.getElementById('site-background').style.backgroundImage !== `url('${this.props.userData.bgImg}')`){
-         document.getElementById('site-background').style.backgroundImage = `url('${this.props.userData.bgImg}')`;
+      const { bgImgs, setBgImg, loggedIn } = this.props.userData
+      if (loggedIn && bgImgs.length === 0) {
+         this.changeBackground();
+      } else if (loggedIn &&
+         document.getElementById('site-background').style.backgroundImage !== `url('${bgImgs[setBgImg]}')`){
+         document.getElementById('site-background').style.backgroundImage = `url('${bgImgs[setBgImg]}')`;
       }
    }
 
-   changeBackground = () => (
-      fetch(process.env.REACT_APP_BACKGROUND_URL)
-      .then(resp => resp.json())
-      .then(img => {
-         document.getElementById('site-background').style.backgroundImage = `url('${img.urls.full}')`;
-         this.props.setBg({bgImg: img.urls.full});
-      })
-   )
+   changeBackground = () => {
+      const { bgImgs, setBgImg } = this.props.userData
+      if (setBgImg === 0 || setBgImg == null) {
+         fetch(process.env.REACT_APP_BACKGROUND_URL)
+         .then(resp => resp.json())
+         .then(img => {
+            document.getElementById('site-background').style.backgroundImage = `url('${img.urls.full}')`;
+            this.props.setBg({setBgImg: 0});
+            this.props.addBg(img.urls.full);
+         })
+      } else {
+         let next = setBgImg - 1
+         document.getElementById('site-background').style.backgroundImage = `url('${bgImgs[next]}')`
+         this.props.setBg({setBgImg: next});
+      }
+   }
+
+   changeBackgroundBack = () => {
+      const { bgImgs, setBgImg } = this.props.userData
+      if (setBgImg < bgImgs.length - 1) {
+         const prev = setBgImg + 1
+         document.getElementById('site-background').style.backgroundImage = `url('${bgImgs[prev]}')`;
+         this.props.setBg({setBgImg: prev});
+      }
+   }
 
    signOut = () => {
       this.props.logoutUser();
@@ -76,4 +94,4 @@ const mapStateToProps = state => {
    }
 }
 
-export default withRouter(connect(mapStateToProps, { logoutUser, setBg })(App))
+export default withRouter(connect(mapStateToProps, { logoutUser, setBg, addBg })(App))
