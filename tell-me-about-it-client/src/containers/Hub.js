@@ -18,12 +18,16 @@ class Hub extends Component {
 
    render() {
       let tab = null;
+      let postActive = null;
+      let draftActive = null;
       switch (this.props.location.pathname) {
          case "/posts":
             tab = <PublishedPosts posts={this.props.posts.posts} />
+            draftActive = "inactive"
             break;
          case "/drafts":
             tab = <DraftPosts posts={this.props.posts.drafts} /> 
+            postActive = "inactive"
             break;
          default:
             tab = <Redirect to='/' /> 
@@ -31,8 +35,8 @@ class Hub extends Component {
       return (
          <div className="Hub-container">
                <ul className="Hub-nav" >
-                  <li><Link to="/posts">Posts</Link></li>
-                  <li><Link to="/drafts">Drafts</Link></li>
+                  <li className={postActive}><Link to="/posts">Posts</Link></li>
+                  <li className={draftActive}><Link to="/drafts">Drafts</Link></li>
                </ul>
                {tab}
          </div>

@@ -14,12 +14,11 @@ import { setBg, logoutUser } from './actions/Users';
 
 class App extends Component {
 
-   componentWillReceiveProps( nextProps ){
-      if (nextProps.userData.loggedIn && nextProps.userData.bgImg == null) {
-         console.log(nextProps.userData.bgImg);
-      } else if (nextProps.userData.loggedIn &&
-         document.getElementById('site-background').style.backgroundImage !== `url('${nextProps.userData.bgImg}')`){
-         document.getElementById('site-background').style.backgroundImage = `url('${nextProps.userData.bgImg}')`;
+   componentDidMount(){
+      if (this.props.userData.loggedIn && this.props.userData.bgImg == null) {
+      } else if (this.props.userData.loggedIn &&
+         document.getElementById('site-background').style.backgroundImage !== `url('${this.props.userData.bgImg}')`){
+         document.getElementById('site-background').style.backgroundImage = `url('${this.props.userData.bgImg}')`;
       }
    }
 

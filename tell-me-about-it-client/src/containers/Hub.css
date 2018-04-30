@@ -2,8 +2,8 @@
     margin: .7em auto 0;
     padding: 0;
     width: 40em;
-    background: #fff;
-    box-shadow: 1px 1px 5px #888;
+    background:rgb(0, 0, 0, .6);
+    border-radius: 5px;
     align-self: start;
     grid-row-start: 6;
     grid-row-end: 7;
@@ -13,19 +13,26 @@
     margin: 0;
     padding: 0; 
     list-style: none;
-    border-bottom: 1px solid rgb(218, 216, 216);
+    font-family: helvetica;
+    font-weight: bold;
+    font-size: 2em;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 
 .Hub-nav a {
+   color: white;
    text-decoration: none;
+   display: block;
 }
 
 .Hub-nav li {
-    padding: 1em;
+    padding: .5em;
 }
 
-.Hub-nav li:hover {
-    background-color: rgb(247, 247, 247);
+.inactive:hover {
+   background: rgb(104, 104, 104, .5);
+}
+.inactive{
+   background: rgb(0, 0, 0, .6);
 }
