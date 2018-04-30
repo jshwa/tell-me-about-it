@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PostEditor from '../components/PostEditor';
 import { Link } from 'react-router-dom';
-import { setCurrentDraft, loadDraftPost } from '../actions/Drafts';
+import { setCurrentDraft, loadDraftPost, createNew } from '../actions/Drafts';
 import { displayPublishedPost } from '../actions/Posts';
 import './Drafter.css';
 import isEmpty  from 'lodash/isEmpty';
@@ -21,6 +21,11 @@ class Drafter extends Component {
          const id = this.props.match.params.id;
          this.props.setCurrentDraft({id: id, isSaved: true});
          this.props.displayPublishedPost(this.props.posts[id]);
+      }
+
+      if (this.props.match.path === "/drafts/new") {
+         this.props.setCurrentDraft({id: null, isSaved: false});
+         this.props.createNew();
       }
    }
 
@@ -42,4 +47,4 @@ const mapStateToProps = state => ({
    posts: state.posts.posts
 })
 
-export default connect(mapStateToProps, { setCurrentDraft, loadDraftPost, displayPublishedPost })(Drafter)
+export default connect(mapStateToProps, { setCurrentDraft, loadDraftPost, displayPublishedPost, createNew })(Drafter)

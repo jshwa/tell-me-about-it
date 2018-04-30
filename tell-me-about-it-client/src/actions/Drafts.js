@@ -42,3 +42,7 @@ export const setCurrentDraft = props => {
 export const resetDrafts = () => ({
    type: 'RESET_DRAFTS'
 })
+
+export const createNew = () => ({
+   type: 'CREATE_NEW_DRAFT'
+})

@@ -22,6 +22,8 @@ const postsReducer = (state = {
          return Object.assign({}, state, {posts: []})
       case 'RESET_DRAFTS':
          return Object.assign({}, state, {drafts: []})
+      case 'CREATE_NEW_DRAFT':
+         return Object.assign({}, state, {editorState: EditorState.createEmpty()})
       default: 
          return state;
    }
