@@ -5,6 +5,7 @@
    background-color: white;
    grid-row-start: 5;
    grid-row-end: 6;
+   grid-column: 2 / 3;
 }
 
 .Editor {

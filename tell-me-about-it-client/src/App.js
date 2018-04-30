@@ -54,6 +54,10 @@ class App extends Component {
                )}/>
             </Switch>
             {this.props.userData.loggedIn && 
+            <div className="change-background-back-div">
+               <button className="change-background-back" onClick={this.changeBackgroundBack}>&lt;</button>
+            </div> }
+            {this.props.userData.loggedIn && 
             <div className="change-background-div">
                <button className="change-background" onClick={this.changeBackground}>></button>
             </div> }
