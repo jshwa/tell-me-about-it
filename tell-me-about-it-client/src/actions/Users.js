@@ -15,3 +15,8 @@ export const setLoggedIn = bool => {
 export const logoutUser = () => ({
    type: "LOGOUT_USER"
 })
+
+export const setBg = bgImg => ({
+   type: "SET_BG",
+   bgImg
+})
