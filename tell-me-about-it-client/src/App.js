@@ -10,17 +10,27 @@ import Hub from './containers/Hub';
 import { LoggedInRoute } from './containers/LoggedInRoute';
 import { Prompt } from './components/Prompt';
 import { clearState } from './localStorage';
-import { logoutUser } from './actions/Users';
+import { setBg, logoutUser } from './actions/Users';
 
 class App extends Component {
+
+   componentWillReceiveProps( nextProps ){
+      if (nextProps.userData.loggedIn && nextProps.userData.bgImg == null) {
+         console.log(nextProps.userData.bgImg);
+      } else if (nextProps.userData.loggedIn &&
+         document.getElementById('site-background').style.backgroundImage !== `url('${nextProps.userData.bgImg}')`){
+         document.getElementById('site-background').style.backgroundImage = `url('${nextProps.userData.bgImg}')`;
+      }
+   }
 
    changeBackground = () => (
       fetch(process.env.REACT_APP_BACKGROUND_URL)
       .then(resp => resp.json())
       .then(img => {
-         document.getElementById('site-background').style.backgroundImage = `url('${img.urls.full}')`
+         document.getElementById('site-background').style.backgroundImage = `url('${img.urls.full}')`;
+         this.props.setBg({bgImg: img.urls.full});
       })
-      )
+   )
 
    signOut = () => {
       this.props.logoutUser();
@@ -44,12 +54,14 @@ class App extends Component {
                  this.props.userData.loggedIn === false ? <Redirect to= "/login" /> : <Redirect to= "/drafts" />
                )}/>
             </Switch>
+            {this.props.userData.loggedIn && 
             <div className="change-background-div">
                <button className="change-background" onClick={this.changeBackground}>></button>
-            </div>
+            </div> }
+            {this.props.userData.loggedIn && 
             <div className="sign-out-div">
                <button className="sign-out" onClick={this.signOut}>X</button>
-            </div>
+            </div> }
          </div>
       );
    }
@@ -61,4 +73,4 @@ const mapStateToProps = state => {
    }
 }
 
-export default withRouter(connect(mapStateToProps, { logoutUser })(App))
+export default withRouter(connect(mapStateToProps, { logoutUser, setBg })(App))
