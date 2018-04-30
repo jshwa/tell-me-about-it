@@ -1,4 +1,4 @@
-const userReducer = (state = {token: null, login: null, oauth: null, bgImg: null, loggedIn: false}, action) => {
+const userReducer = (state = {token: null, login: null, oauth: null, setBgImg: null, bgImgs:[], loggedIn: false}, action) => {
    switch(action.type) {
       case "LOGIN_USER":
          return Object.assign({}, state, action.userData, {loggedIn: true});
@@ -6,8 +6,12 @@ const userReducer = (state = {token: null, login: null, oauth: null, bgImg: null
          return Object.assign({}, state, {loggedIn : action.loggedIn});
       case "LOGOUT_USER":
          return Object.assign({}, state, {token: null, login: null, oauth: null, loggedIn: false});
-      case "SET_BG":
-         return Object.assign({}, state, action.bgImg);
+      case "SET_BG": 
+         return Object.assign({}, state, action.setBgImg)
+      case "ADD_BG":
+         console.log("in reducer")
+         console.log(action.newBg)
+         return Object.assign({}, state, {bgImgs: [action.newBg].concat(state.bgImgs)});
       default:
          return state;
     }

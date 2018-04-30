@@ -16,7 +16,12 @@ export const logoutUser = () => ({
    type: "LOGOUT_USER"
 })
 
-export const setBg = bgImg => ({
+export const setBg = index => ({
    type: "SET_BG",
-   bgImg
+   setBgImg: index
+})
+
+export const addBg = newBg => ({
+   type: "ADD_BG",
+   newBg
 })
